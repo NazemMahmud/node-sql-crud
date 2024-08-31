@@ -1,0 +1,15 @@
+version: "3"
+services:
+  postgres:
+    image: postgres:alpine
+    container_name: POSTGRESQL
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: 'secret' # ${DB_PASSWORD}
+      POSTGRES_USER: 'user-admin' # ${DB_USERNAME}
+      POSTGRES_DB: 'local-test' # ${DB_DATABASE}
+      POSTGRES_PORT: 54311 # ${DB_PORT}
+    ports:
+      - 54310:54311 # ${DB_PORT}
+    volumes:
+      - ./docker-conf/postgres-data:/var/lib/postgresql/data
